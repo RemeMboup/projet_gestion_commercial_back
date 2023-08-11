@@ -99,11 +99,11 @@ WSGI_APPLICATION = 'backendgestioncommercial.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'gestion_commerciale',
+        'NAME': 'commercial_gestion',
         'USER': 'postgres',
         'PASSWORD': 'Pass@123',  #'88Islam19'
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5433',
     }
 }
 

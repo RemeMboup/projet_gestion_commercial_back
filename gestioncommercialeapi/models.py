@@ -119,9 +119,9 @@ class DetailApprovisionnement(BaseEntity):
     prix_htva = models.FloatField()
     approvisionnement = models.ManyToManyField(Approvisionnement, related_name = 'approvisionnement')
     produit = models.ManyToManyField(Produit, related_name = 'produit')
+    
    
    
-
 class FactureFournisseur(BaseEntity):
 
     numero = models.CharField( max_length=50)
@@ -133,6 +133,7 @@ class ReglementFournisseur(BaseEntity):
     montant_regle = models.FloatField()
     etat = models.CharField( max_length=50)
     facture = models.ForeignKey(FactureFournisseur, related_name='facture_id', on_delete=models.CASCADE)
+    montant_restant = models.FloatField()
 
 class Client(BaseEntity):
 
@@ -164,7 +165,7 @@ class DetailCommande(BaseEntity):
 class FactureClient(BaseEntity):
 
     numero = models.CharField( max_length=50)
-    commande = models.ForeignKey(DetailCommande, related_name='commande_id', on_delete=models.CASCADE, null = True, blank = True)
+    commande = models.ManyToManyField(DetailCommande, related_name='commande_id')
     montant = models.FloatField()
 class ReglementClient(BaseEntity):
 
@@ -172,5 +173,6 @@ class ReglementClient(BaseEntity):
     montant_regle = models.FloatField()
     facture = models.ForeignKey(FactureClient, related_name='facture_id', on_delete=models.CASCADE, null = True, blank = True)
     etat = models.CharField( max_length=80)
+    montant_restant = models.FloatField()
    
 

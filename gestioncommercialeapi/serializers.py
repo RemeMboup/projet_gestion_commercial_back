@@ -104,11 +104,27 @@ class CommandeSerializer(serializers.ModelSerializer):
         model = Commande
         fields = '__all__'
 
+class CommandesSerializer(serializers.ModelSerializer):
+    """Categorie Serializer class"""
+    client = ClientSerializer()
+    class Meta:
+        model = Commande
+         
+        fields = [
+            "id",
+            "numero",
+            "client",
+            
+            
+        ]
+
 class FactureClientSerializer(serializers.ModelSerializer):
     """Categorie Serializer class"""
     class Meta:
         model = FactureClient
         fields = '__all__'
+
+
  
 class ReglementClientSerializer(serializers.ModelSerializer):
     """Categorie Serializer class"""
@@ -127,9 +143,45 @@ class DetailCommandeSerializer(serializers.ModelSerializer):
         model = DetailCommande
         fields = '__all__'
 
+class DetailCommandesSerializer(serializers.ModelSerializer):
+    """DetailCommande Write Serializer class"""
+    
+    commande = ClientSerializer( many= True)
+    class Meta:
+        model = DetailCommande
+        fields = [
+            "id",
+            "numero",
+            "commande",
+            "montant"
+            
+        ]
 
 class DetailApprovisionnementSerializer(serializers.ModelSerializer):
     """Categorie Serializer class"""
     class Meta:
         model =  DetailApprovisionnement
         fields = '__all__'
+
+
+class DetailsCommandeSerializer(serializers.Serializer):
+    detailCommande = DetailCommandeSerializer(many = True)
+
+class FactureClientReadSerializer(serializers.ModelSerializer):
+    commande = DetailCommandeSerializer( many= True)
+    class Meta:
+        model = FactureClient
+        fields = [
+            "id",
+            "numero",
+            "commande",
+            "montant"
+            
+        ]
+
+class GetDetailCommandeSerializer(serializers.Serializer):
+    numero = serializers.CharField(max_length=50)
+
+
+    
+   

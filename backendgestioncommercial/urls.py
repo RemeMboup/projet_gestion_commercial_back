@@ -55,5 +55,9 @@ urlpatterns = [
     url(r'^detail-commande/(?P<id>\d+)/', DetailCommandeRudView.as_view()),
     url(r'^detail-appros-create/', DetailApprovisionnementAPIView.as_view()),
     url(r'^detail-appros/(?P<id>\d+)/', DetailApprovisionnementRudView.as_view()),
+    url(r'^add-facture-client/', AddFactureClientView.as_view()),
+    url(r'^get-detail-commande/', GetDetailCommandeView.as_view()),
+    url(r'^add-detail-commande/', AddDetailCommandeView.as_view()),
+    url(r'^add-detail-approvisionnement/', AddDetailApprovisionnementView.as_view()),
     
 ]
